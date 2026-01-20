@@ -70,6 +70,13 @@ This page documents the technical details of the Dog API.
   }
   ```
 
+## Search Hint
+If you are looking for a specific breed (e.g., "Golden Retriever"):
+1. Call `/breeds?page[number]=1&page[size]=100` to get a large list.
+2. Filter the results in your own memory/code by the `attributes.name` property.
+3. If not found, check subsequent pages or previous pages.
+4. Once you have the `id`, you can fetch more details via `/breeds/{id}`.
+
 ## Error Handling
 - **404 Not Found**: If the ID does not exist.
 - **400 Bad Request**: If required parameters are missing.

@@ -2,8 +2,13 @@
 
 This page documents the technical details of the Dog API.
 
-## Base URL
+## Base URL (EXTERNAL)
 `https://dogapi.dog/api/v2`
+
+> [!CAUTION]
+> **This API is hosted on a different domain.** 
+> DO NOT append these paths to the current website URL (frrfdev.github.io).
+> ALWAYS use the full Base URL: `https://dogapi.dog/api/v2`.
 
 ## Endpoints
 

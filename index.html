@@ -150,11 +150,13 @@
     ┌─────────────────────────────────────────────────────────────────────────────┐
     │ ENDPOINT 1: GET /breeds                                                      │
     │─────────────────────────────────────────────────────────────────────────────│
-    │ Description:  Get list of all dog breeds                                     │
-    │ Parameters:   None                                                           │
-    │ Response:     { "data": [ { "id": "uuid", "attributes": { "name": "...",    │
-    │                 "description": "...", "life_span": "..." } } ] }            │
+    │ Description:  Get list of all dog breeds (paginated)                         │
+    │ Parameters:   page (query, optional) - page number                          │
+    │               limit (query, optional) - items per page                       │
+    │ Response:     { "data": [...], "links": { "next": "...", "prev": "..." } }  │
+    │ Pagination:   Use response.links.next / response.links.prev                 │
     │ Example:      fetch('https://dogapi.dog/api/v2/breeds')                     │
+    │               fetch('https://dogapi.dog/api/v2/breeds?page=2&limit=10')     │
     └─────────────────────────────────────────────────────────────────────────────┘
 
     ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -193,10 +195,29 @@
     {
       "path": "/breeds",
       "method": "GET",
-      "description": "List all dog breeds",
-      "parameters": [],
+      "description": "List all dog breeds (paginated)",
+      "parameters": [
+        {
+          "name": "page",
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "description": "Page number for pagination"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "description": "Items per page"
+        }
+      ],
       "response": {
-        "structure": { "data": [{ "id": "uuid", "attributes": {} }] }
+        "structure": {
+          "data": [{ "id": "uuid", "attributes": {} }],
+          "links": { "next": "url or null", "prev": "url or null" }
+        },
+        "pagination": "Check response.links.next for next page, response.links.prev for previous"
       }
     },
     {

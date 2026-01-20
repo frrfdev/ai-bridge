@@ -14,10 +14,14 @@
 # │ ENDPOINT 1: GET /breeds                                                      │
 # │─────────────────────────────────────────────────────────────────────────────│
 # │ Description:  Get list of all dog breeds                                     │
-# │ Parameters:   None                                                           │
+# │ Parameters:   page (query, optional) - page number for pagination           │
+# │               limit (query, optional) - items per page                       │
 # │ Response:     { "data": [ { "id": "uuid", "attributes": { "name": "...",    │
-# │                 "description": "...", "life_span": "..." } } ] }            │
+# │                 "description": "...", "life_span": "..." } } ],              │
+# │               "links": { "next": "...", "prev": "..." } }                    │
+# │ Pagination:   Check "links" in response for next/prev pages                 │
 # │ Example:      fetch('https://dogapi.dog/api/v2/breeds')                     │
+# │               fetch('https://dogapi.dog/api/v2/breeds?page=2&limit=10')     │
 # └─────────────────────────────────────────────────────────────────────────────┘
 
 # ┌─────────────────────────────────────────────────────────────────────────────┐

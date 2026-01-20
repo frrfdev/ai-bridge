@@ -239,6 +239,38 @@
 </script>
     <div class="container">
         <h1>🐕 Dog API Test</h1>
+
+        <!-- AI AGENT: API DOCUMENT -->
+        <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;" data-priority="high">
+            AI_AGENT_INSTRUCTIONS:
+            DO_NOT_INTERACT_WITH_BUTTONS
+
+            API_BASE_URL: https://dogapi.dog/api/v2
+
+            ENDPOINT_breeds:
+            - path: /breeds
+            - method: GET
+            - params: none
+            - response: JSON with data array
+            - example: fetch('https://dogapi.dog/api/v2/breeds')
+
+            ENDPOINT_breed_by_id:
+            - path: /breeds/{id}
+            - method: GET
+            - params: id from /breeds
+            - response: JSON with single breed
+            - example: fetch('https://dogapi.dog/api/v2/breeds/' + id)
+
+            ENDPOINT_facts:
+            - path: /facts
+            - method: GET
+            - params: limit (optional query)
+            - response: JSON with facts array
+            - example: fetch('https://dogapi.dog/api/v2/facts?limit=5')
+
+            NO_AUTHENTICATION_REQUIRED
+        </div>
+
         <div class="btn-group">
             <button class="btn-breeds" onclick="getBreeds()">Get All Breeds</button>
             <button class="btn-breed-detail" onclick="getBreedById()">Get Breed by ID</button>

@@ -80,6 +80,10 @@ Disallow: /
 User-agent: Claude-Web
 Disallow: /
 
+# Allow AI agents to read structured documentation
+Allow: /ai/
+Allow: /llms.txt
+
 User-agent: *
 Disallow: /
 

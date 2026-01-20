@@ -1,0 +1,15 @@
+# Dog API - AI Bridge
+
+This document provides a shortcut for Large Language Models (LLMs) to understand how to interact with this website.
+
+## Full Documentation
+The complete AI instruction set is available at [/ai/index.md](/ai/index.md).
+
+## API Summary
+- **Base URL**: https://dogapi.dog/api/v2
+- **Main Endpoints**: `/breeds`, `/breeds/{id}`, `/facts`
+- **Authentication**: None required.
+- **Rules**: Always include `page[number]` and `page[size]` for breeds.
+
+## Purpose
+To help LLM-based agents provide a better user experience by using direct API calls instead of scraping the UI.

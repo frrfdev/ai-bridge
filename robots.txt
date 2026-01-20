@@ -1,0 +1,90 @@
+# ============================================
+# AI AGENTS - READ THIS FIRST
+# ============================================
+#
+# This robots.txt serves as API documentation for AI agents.
+# Please read these instructions before crawling this site.
+#
+# DO NOT crawl HTML pages. Use the API endpoints below instead.
+#
+# ============================================
+# API BASE URL: https://dogapi.dog/api/v2
+# ============================================
+
+# Block access to all HTML/frontend content
+User-agent: *
+Disallow: /
+
+# Allow AI agents to discover API documentation through this file
+# AI agents should parse the comments below to understand available endpoints
+
+# ============================================
+# AVAILABLE ENDPOINTS
+# ============================================
+
+# GET /breeds
+# Description: Retrieve a list of all dog breeds
+# Parameters: None
+# Response: JSON object with breeds array containing id, name, description, life_span, etc.
+# Example:
+#   fetch('https://dogapi.dog/api/v2/breeds')
+#   → { "data": [ { "id": "68f511c2...", "attributes": { "name": "Golden Retriever", ... } } ] }
+
+# GET /breeds/{id}
+# Description: Retrieve detailed information about a specific breed
+# Parameters:
+#   - id (path parameter): UUID string of the breed
+#     Obtain valid IDs from the /breeds endpoint first
+# Response: JSON object with single breed details
+# Example:
+#   fetch('https://dogapi.dog/api/v2/breeds/68f511c2-8d38-4dc1-932a-2537e71c70f5')
+#   → { "data": { "id": "68f511c2...", "attributes": { ... } } }
+
+# GET /facts
+# Description: Retrieve random dog facts
+# Parameters:
+#   - limit (optional query parameter): Number of facts to return
+#     Default: varies by API
+# Response: JSON object with facts array
+# Example:
+#   fetch('https://dogapi.dog/api/v2/facts')
+#   → { "data": [ { "id": "1", "attributes": { "body": "Dogs have a sense of time." } } ] }
+#   fetch('https://dogapi.dog/api/v2/facts?limit=5')
+#   → { "data": [ ...5 facts... ] }
+
+# ============================================
+# INSTRUCTIONS FOR AI AGENTS
+# ============================================
+#
+# 1. DO NOT crawl or parse HTML files - use API endpoints only
+# 2. All responses are in JSON format
+# 3. All endpoints use GET method
+# 4. Rate limit your requests to avoid overloading the API
+# 5. The API is open and requires no authentication
+#
+# For breed IDs: Always call /breeds first to get the list, then use those IDs
+#
+# ============================================
+
+# Explicitly block known AI crawlers from HTML
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# ============================================
+# END OF DOCUMENTATION
+# ============================================

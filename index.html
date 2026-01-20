@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog API - Idea Validation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        button {
+            padding: 15px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-breeds {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-breed-detail {
+            background: #f093fb;
+            color: white;
+        }
+
+        .btn-facts {
+            background: #4facfe;
+            color: white;
+        }
+
+        .btn-breeds:hover {
+            background: #5568d3;
+        }
+
+        .btn-breed-detail:hover {
+            background: #d97ee8;
+        }
+
+        .btn-facts:hover {
+            background: #3a95e8;
+        }
+
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f5f5f5;
+            min-height: 100px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            word-break: break-all;
+            display: none;
+        }
+
+        #output.visible {
+            display: block;
+        }
+
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐕 Dog API Test</h1>
+        <div class="btn-group">
+            <button class="btn-breeds" onclick="getBreeds()">Get All Breeds</button>
+            <button class="btn-breed-detail" onclick="getBreedById()">Get Breed by ID</button>
+            <button class="btn-facts" onclick="getFacts()">Get Dog Facts</button>
+        </div>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'https://dogapi.dog/api/v2';
+        const output = document.getElementById('output');
+
+        function showOutput(data) {
+            output.textContent = JSON.stringify(data, null, 2);
+            output.classList.add('visible');
+        }
+
+        async function getBreeds() {
+            try {
+                output.classList.remove('visible');
+                const response = await fetch(`${API_BASE_URL}/breeds`);
+                const data = await response.json();
+                showOutput(data);
+            } catch (error) {
+                showOutput({ error: error.message });
+            }
+        }
+
+        async function getBreedById(id = '68f511c2-8d38-4dc1-932a-2537e71c70f5') {
+            try {
+                output.classList.remove('visible');
+                const response = await fetch(`${API_BASE_URL}/breeds/${id}`);
+                const data = await response.json();
+                showOutput(data);
+            } catch (error) {
+                showOutput({ error: error.message });
+            }
+        }
+
+        async function getFacts() {
+            try {
+                output.classList.remove('visible');
+                const response = await fetch(`${API_BASE_URL}/facts`);
+                const data = await response.json();
+                showOutput(data);
+            } catch (error) {
+                showOutput({ error: error.message });
+            }
+        }
+    </script>
+</body>
+</html>

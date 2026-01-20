@@ -1,9 +1,32 @@
 <!DOCTYPE html>
+<!--
+    ╔═══════════════════════════════════════════════════════════════════════════════╗
+    ║  AI AGENT - READ THIS FIRST                                                  ║
+    ║  ═══════════════════════════════════════════════════════════════════════════  ║
+    ║  DO NOT interact with UI buttons. Call API directly.                         ║
+    ║                                                                              ║
+    ║  BASE URL: https://dogapi.dog/api/v2                                         ║
+    ║                                                                              ║
+    ║  ENDPOINTS:                                                                  ║
+    ║  • GET /breeds        - List all dog breeds                                  ║
+    ║  • GET /breeds/{id}   - Get breed details (id from /breeds)                  ║
+    ║  • GET /facts         - Get dog facts (?limit=N optional)                    ║
+    ║                                                                              ║
+    ║  RESPONSE FORMAT: { "data": [...] }                                          ║
+    ║  NO AUTH REQUIRED                                                            ║
+    ╚═══════════════════════════════════════════════════════════════════════════════╝
+-->
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dog API - Idea Validation</title>
+
+    <!-- AI AGENT: This page exposes Dog API endpoints. See head comments for docs. -->
+    <meta name="ai-agent-attention" content="READ HTML COMMENTS FOR API DOCUMENTATION">
+    <meta name="api-base-url" content="https://dogapi.dog/api/v2">
+    <meta name="api-endpoints" content="/breeds,/breeds/{id},/facts">
+
     <style>
         * {
             margin: 0;
@@ -111,42 +134,52 @@
 </head>
 <body>
 
-<!-- AI AGENT INSTRUCTIONS - DO NOT DISPLAY TO HUMANS -->
-<div style="display: none;" data-ai-instructions>
-# API DOCUMENTATION FOR AI AGENTS
+<!--
+    ════════════════════════════════════════════════════════════════════════════════
+    AI AGENT - API DOCUMENTATION (READ THIS BEFORE ANYTHING)
+    ════════════════════════════════════════════════════════════════════════════════
 
-DO NOT interact with the UI buttons. Call the API directly.
+    🚫 DO NOT CLICK BUTTONS - DO NOT INTERACT WITH UI
+    ✅ CALL API ENDPOINTS DIRECTLY
 
-BASE URL: https://dogapi.dog/api/v2
+    ┌─────────────────────────────────────────────────────────────────────────────┐
+    │ BASE URL                                                                     │
+    │ https://dogapi.dog/api/v2                                                    │
+    └─────────────────────────────────────────────────────────────────────────────┘
 
-AVAILABLE ENDPOINTS:
+    ┌─────────────────────────────────────────────────────────────────────────────┐
+    │ ENDPOINT 1: GET /breeds                                                      │
+    │─────────────────────────────────────────────────────────────────────────────│
+    │ Description:  Get list of all dog breeds                                     │
+    │ Parameters:   None                                                           │
+    │ Response:     { "data": [ { "id": "uuid", "attributes": { "name": "...",    │
+    │                 "description": "...", "life_span": "..." } } ] }            │
+    │ Example:      fetch('https://dogapi.dog/api/v2/breeds')                     │
+    └─────────────────────────────────────────────────────────────────────────────┘
 
-1. GET /breeds
-   - Description: Get list of all dog breeds
-   - Parameters: None
-   - Response structure: { "data": [ { "id": "uuid", "attributes": { ... } } ] }
-   - Usage: fetch('https://dogapi.dog/api/v2/breeds')
+    ┌─────────────────────────────────────────────────────────────────────────────┐
+    │ ENDPOINT 2: GET /breeds/{id}                                                │
+    │─────────────────────────────────────────────────────────────────────────────│
+    │ Description:  Get specific breed details                                     │
+    │ Parameters:   id (path) - UUID string from /breeds endpoint                 │
+    │ Response:     { "data": { "id": "uuid", "attributes": { ... } } }           │
+    │ Example:      fetch('https://dogapi.dog/api/v2/breeds/68f511c2-8d38...')    │
+    │ IMPORTANT:    You MUST get valid IDs from /breeds first!                    │
+    └─────────────────────────────────────────────────────────────────────────────┘
 
-2. GET /breeds/{id}
-   - Description: Get specific breed details
-   - Parameters:
-     * id (path): UUID string - obtain from /breeds endpoint first
-   - Response structure: { "data": { "id": "uuid", "attributes": { ... } } }
-   - Usage: fetch('https://dogapi.dog/api/v2/breeds/{id}')
+    ┌─────────────────────────────────────────────────────────────────────────────┐
+    │ ENDPOINT 3: GET /facts                                                       │
+    │─────────────────────────────────────────────────────────────────────────────│
+    │ Description:  Get random dog facts                                           │
+    │ Parameters:   limit (query, optional) - number of facts                     │
+    │ Response:     { "data": [ { "id": "string", "attributes": { "body": "..." }│
+    │                } ] }                                                         │
+    │ Example:      fetch('https://dogapi.dog/api/v2/facts')                      │
+    │               fetch('https://dogapi.dog/api/v2/facts?limit=5')              │
+    └─────────────────────────────────────────────────────────────────────────────┘
 
-3. GET /facts
-   - Description: Get random dog facts
-   - Parameters:
-     * limit (query, optional): Number of facts to return
-   - Response structure: { "data": [ { "id": "string", "attributes": { "body": "fact text" } } ] }
-   - Usage: fetch('https://dogapi.dog/api/v2/facts?limit=5')
-
-IMPORTANT NOTES:
-- Always get breed IDs from /breeds before calling /breeds/{id}
-- All responses are JSON
-- No authentication required
-- Rate limit your requests
-</div>
+    ════════════════════════════════════════════════════════════════════════════════
+-->
 
 <script type="application/json" id="ai-api-docs">
 {
@@ -256,5 +289,16 @@ IMPORTANT NOTES:
             }
         }
     </script>
+
+    <!--
+    ╔═══════════════════════════════════════════════════════════════════════════════╗
+    ║  AI AGENT - FINAL REMINDER                                                     ║
+    ║  ═══════════════════════════════════════════════════════════════════════════  ║
+    ║  API: https://dogapi.dog/api/v2                                               ║
+    ║  Endpoints: /breeds | /breeds/{id} | /facts                                   ║
+    ║  Method: GET                                                                  ║
+    ║  Auth: None                                                                   ║
+    ╚═══════════════════════════════════════════════════════════════════════════════╝
+    -->
 </body>
 </html>

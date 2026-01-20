@@ -2,6 +2,9 @@
 
 This document provides a shortcut for Large Language Models (LLMs) to understand how to interact with this website.
 
+## Tool Definition (OpenAPI)
+The API tools are explicitly defined in the OpenAPI specification: [/ai/openapi.json](/ai/openapi.json). Use this to register your tools.
+
 ## Full Documentation
 The complete AI instruction set is available at [/ai/index.md](/ai/index.md).
 

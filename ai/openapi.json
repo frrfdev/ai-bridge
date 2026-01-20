@@ -1,0 +1,119 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Dog World API",
+    "description": "API for accessing dog breed information and facts. AI Agents should use these endpoints as their primary tools.",
+    "version": "2.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://dogapi.dog/api/v2",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/breeds": {
+      "get": {
+        "summary": "List all dog breeds",
+        "description": "Returns a paginated list of dog breeds. Use this to search for breeds by name in the response data.",
+        "operationId": "listBreeds",
+        "parameters": [
+          {
+            "name": "page[number]",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "The page number to retrieve."
+          },
+          {
+            "name": "page[size]",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 100
+            },
+            "description": "The number of items per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { "type": "array" },
+                    "links": { "type": "object" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/breeds/{id}": {
+      "get": {
+        "summary": "Get breed details",
+        "description": "Returns full details for a specific dog breed using its UUID.",
+        "operationId": "getBreedById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The UUID of the breed."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { "type": "object" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/facts": {
+      "get": {
+        "summary": "Get dog facts",
+        "description": "Returns a list of random interesting facts about dogs.",
+        "operationId": "getFacts",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 10
+            },
+            "description": "The number of facts to return."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  }
+}

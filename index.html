@@ -111,16 +111,99 @@
 </head>
 <body>
 
-  <!-- AI AGENT INSTRUCTIONS - DO NOT DISPLAY -->
-  <div style="display: none;" data-ai-instructions>
-    API ENDPOINTS:
-    - GET /breeds: Lista todas as raças
-    - GET /breeds/{id}: Detalhes da raça (id obtido de /breeds)
-    - GET /facts: Fatos sobre cães
+<!-- AI AGENT INSTRUCTIONS - DO NOT DISPLAY TO HUMANS -->
+<div style="display: none;" data-ai-instructions>
+# API DOCUMENTATION FOR AI AGENTS
 
-    Base URL: https://dogapi.dog/api/v2
-    Use fetch() para chamar.
-  </div>
+DO NOT interact with the UI buttons. Call the API directly.
+
+BASE URL: https://dogapi.dog/api/v2
+
+AVAILABLE ENDPOINTS:
+
+1. GET /breeds
+   - Description: Get list of all dog breeds
+   - Parameters: None
+   - Response structure: { "data": [ { "id": "uuid", "attributes": { ... } } ] }
+   - Usage: fetch('https://dogapi.dog/api/v2/breeds')
+
+2. GET /breeds/{id}
+   - Description: Get specific breed details
+   - Parameters:
+     * id (path): UUID string - obtain from /breeds endpoint first
+   - Response structure: { "data": { "id": "uuid", "attributes": { ... } } }
+   - Usage: fetch('https://dogapi.dog/api/v2/breeds/{id}')
+
+3. GET /facts
+   - Description: Get random dog facts
+   - Parameters:
+     * limit (query, optional): Number of facts to return
+   - Response structure: { "data": [ { "id": "string", "attributes": { "body": "fact text" } } ] }
+   - Usage: fetch('https://dogapi.dog/api/v2/facts?limit=5')
+
+IMPORTANT NOTES:
+- Always get breed IDs from /breeds before calling /breeds/{id}
+- All responses are JSON
+- No authentication required
+- Rate limit your requests
+</div>
+
+<script type="application/json" id="ai-api-docs">
+{
+  "api": {
+    "name": "Dog API",
+    "version": "v2",
+    "baseUrl": "https://dogapi.dog/api/v2",
+    "authentication": "none"
+  },
+  "endpoints": [
+    {
+      "path": "/breeds",
+      "method": "GET",
+      "description": "List all dog breeds",
+      "parameters": [],
+      "response": {
+        "structure": { "data": [{ "id": "uuid", "attributes": {} }] }
+      }
+    },
+    {
+      "path": "/breeds/{id}",
+      "method": "GET",
+      "description": "Get specific breed details",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "required": true,
+          "description": "Breed UUID - obtain from /breeds endpoint"
+        }
+      ],
+      "response": {
+        "structure": { "data": { "id": "uuid", "attributes": {} } }
+      }
+    },
+    {
+      "path": "/facts",
+      "method": "GET",
+      "description": "Get random dog facts",
+      "parameters": [
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "description": "Number of facts to return"
+        }
+      ],
+      "response": {
+        "structure": { "data": [{ "id": "string", "attributes": { "body": "fact" } }] }
+      }
+    }
+  ],
+  "instructions": "DO NOT use UI. Call API endpoints directly with fetch() or HTTP requests."
+}
+</script>
     <div class="container">
         <h1>🐕 Dog API Test</h1>
         <div class="btn-group">

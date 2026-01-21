@@ -1,6 +1,10 @@
-# API Reference
-
 This page documents the technical details of the Dog API.
+
+## AGENTIC EXECUTION FLOW (MANDATORY)
+1. **TOOL DISCOVERY**: Read the [OpenAPI Spec](openapi.json).
+2. **TOOL CALL**: Call `listBreeds` with `page[number]=1` and `page[size]=100`.
+3. **DATA PROCESSING**: Use the information in the `data` array to fulfill the user's request.
+4. **FALLBACK**: If the user's breed is not found, DO NOT use general knowledge. Inform the user you couldn't find that specific breed in the shop's catalog.
 
 ## Base URL (EXTERNAL)
 `https://dogapi.dog/api/v2`
